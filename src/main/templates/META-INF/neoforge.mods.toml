@@ -46,7 +46,7 @@ authors="MinenMaster"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-tbd
+Puts loot in the crashed ships of BetterEnd: New Dawn.
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
@@ -75,6 +75,17 @@ config="${mod_id}.mixins.json"
     # AFTER - This mod is loaded AFTER the dependency
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT, or SERVER
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    # Verified against BetterEnd: New Dawn 21.0.34, whose own modId is "betterend".
+    # This mod mixes into org.betterx.betterend.world.features.CrashedShipFeature, so BetterEnd must
+    # be present and must load first.
+    modId="betterend"
+    type="required"
+    reason="This mod adds loot to BetterEnd's crashed ships and does nothing without it."
+    versionRange="[21.0.34,)"
+    ordering="AFTER"
     side="BOTH"
 
 # Here's another dependency

@@ -1,13 +1,6 @@
 {
-  "itemGroup.betterendcrashedshiploot": "Example Mod Tab",
-  "block.betterendcrashedshiploot.example_block": "Example Block",
-  "item.betterendcrashedshiploot.example_item": "Example Item",
-
-  "betterendcrashedshiploot.configuration.title": "BetterEnd Crashed Ship Loot Configs",
-  "betterendcrashedshiploot.configuration.section.betterendcrashedshiploot.common.toml": "BetterEnd Crashed Ship Loot Configs",
-  "betterendcrashedshiploot.configuration.section.betterendcrashedshiploot.common.toml.title": "BetterEnd Crashed Ship Loot Configs",
-  "betterendcrashedshiploot.configuration.items": "Item List",
-  "betterendcrashedshiploot.configuration.logDirtBlock": "Log Dirt Block",
-  "betterendcrashedshiploot.configuration.magicNumberIntroduction": "Magic Number Text",
-  "betterendcrashedshiploot.configuration.magicNumber": "Magic Number"
+  "betterendcrashedshiploot.configuration.title": "BetterEnd Crashed Ship Loot",
+  "betterendcrashedshiploot.configuration.section.betterendcrashedshiploot.common.toml": "BetterEnd Crashed Ship Loot",
+  "betterendcrashedshiploot.configuration.section.betterendcrashedshiploot.common.toml.title": "BetterEnd Crashed Ship Loot",
+  "betterendcrashedshiploot.configuration.enabled": "Fill Crashed Ship Chests"
 }

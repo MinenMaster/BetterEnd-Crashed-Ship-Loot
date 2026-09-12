@@ -27,7 +27,19 @@ sourceSets.main.resources {
 }
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+    // Modrinth Maven, used for the third-party mods this mod is developed and tested against.
+    // Scoped with exclusiveContent so no other repository is queried for the maven.modrinth group.
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
 }
 
 base {
@@ -116,27 +128,33 @@ configurations {
 }
 
 dependencies {
-    // Example optional mod dependency with JEI
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
-    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
-    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
+    // Third-party mods, resolved from Modrinth Maven as "maven.modrinth:<project>:<versionId>".
+    // Version ids are pinned deliberately: they are immutable, unlike the human-readable version
+    // numbers. Modrinth Maven publishes no transitive dependency metadata, so the whole BetterEnd
+    // dependency closure (BCLib -> WorldWeaver -> WunderLib) is listed explicitly.
+    //
+    // These jars are never bundled and never redistributed: compileOnly for what we compile against,
+    // localRuntime for what the dev runtime needs. localRuntime (not runtimeOnly) keeps them out of
+    // this mod's published metadata.
 
-    // Example mod dependency using a mod jar from ./libs with a flat dir repository
-    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
-    // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
+    // BetterEnd: New Dawn 21.0.34 - the mod whose crashed ships this mod fills.
+    compileOnly "maven.modrinth:betterend-neoforge:${betterend_version_id}"
+    localRuntime "maven.modrinth:betterend-neoforge:${betterend_version_id}"
 
-    // Example mod dependency using a file as dependency
-    // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
+    // BCLib: New Dawn 21.0.26 - required by BetterEnd.
+    compileOnly "maven.modrinth:bclib-neoforge:${bclib_version_id}"
+    localRuntime "maven.modrinth:bclib-neoforge:${bclib_version_id}"
 
-    // Example project dependency using a sister or child project:
-    // implementation project(":myproject")
+    // WorldWeaver: New Dawn 21.0.25 - required by BetterEnd and BCLib.
+    compileOnly "maven.modrinth:worldweaver-neoforge:${worldweaver_version_id}"
+    localRuntime "maven.modrinth:worldweaver-neoforge:${worldweaver_version_id}"
 
-    // For more info:
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    // WunderLib: New Dawn 21.0.10 - required by BetterEnd, BCLib and WorldWeaver.
+    compileOnly "maven.modrinth:wunderlib-neoforge:${wunderlib_version_id}"
+    localRuntime "maven.modrinth:wunderlib-neoforge:${wunderlib_version_id}"
+
+    // Lootr 1.21.1-1.11.38.125 - runtime only, for compatibility testing. Never compiled against.
+    localRuntime "maven.modrinth:lootr:${lootr_version_id}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

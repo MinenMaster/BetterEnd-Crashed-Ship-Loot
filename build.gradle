@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.147'
     id 'idea'
+    id 'com.modrinth.minotaur' version '2.+'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -192,6 +193,24 @@ publishing {
         maven {
             url "file://${project.projectDir}/repo"
         }
+    }
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "betterend-crashed-ship-loot"
+    versionNumber = mod_version
+    versionType = providers.gradleProperty("modrinthVersionType").getOrElse("release")
+    versionName = "${mod_name} ${mod_version}"
+    uploadFile = tasks.named("jar")
+    gameVersions = [minecraft_version]
+    loaders = ["neoforge"]
+    dependencies {
+        required.project "betterend-neoforge"
+        required.project "bclib-neoforge"
+        required.project "worldweaver-neoforge"
+        required.project "wunderlib-neoforge"
+        optional.project "lootr"
     }
 }
 

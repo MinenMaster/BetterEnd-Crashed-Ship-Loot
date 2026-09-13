@@ -1,5 +1,8 @@
 # BetterEnd Crashed Ship Loot
 
+[![Available on Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/betterend-crashed-ship-loot)
+[![View on GuitHub](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/github_vector.svg)](https://github.com/MinenMaster/BetterEnd-Crashed-Ship-Loot)
+
 A NeoForge 1.21.1 mod that puts loot in the crashed ships of
 [BetterEnd: New Dawn](https://modrinth.com/mod/betterend-neoforge).
 
